@@ -10,9 +10,6 @@ import TopBar from "src/components/menu/TopBar";
 import TrackCard from 'src/components/TrackCard';
 import { Track } from 'src/types';
 
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export async function getServerSideProps() {
@@ -35,7 +32,7 @@ export default function viewTracks({ tracks }: AllTrackProps) {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <TopBar title="All videos"/>
+        <TopBar title="Scored song list"/>
         <SideBar/>
         {/* Page content */}
         <Box

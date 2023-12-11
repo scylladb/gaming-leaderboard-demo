@@ -1,5 +1,5 @@
-# Video streaming - Next.js + ScyllaDB application
-This repository contains a sample video streaming application built with [Blitz.js](https://blitzjs.com/), [Material-UI](https://mui.com/material-ui/) and [ScyllaDB](https://www.scylladb.com/).
+# Gaming Leaderboard Demo  - Next.js + ScyllaDB application
+This repository contains a sample gaming leaderboard application built with [Blitz.js](https://blitzjs.com/), [Material-UI](https://mui.com/material-ui/) and [ScyllaDB](https://www.scylladb.com/).
 
 ## Prerequisites
 * [NodeJS](https://nodejs.org/en)
@@ -40,24 +40,70 @@ npm run migrate
 
 This creates the following structure in your database:
 ```
-CREATE KEYSPACE IF NOT EXISTS streaming WITH replication = { 'class': 'NetworkTopologyStrategy', 'replication_factor': '3' };
+CREATE KEYSPACE IF NOT EXISTS leaderboard WITH replication = { 'class': 'NetworkTopologyStrategy', 'replication_factor': '3' };
 
-CREATE TABLE streaming.video (
-    id TEXT,
-    content_type TEXT,
-    title TEXT,
-    url TEXT,
-    thumbnail TEXT,
-    created_at TIMESTAMP,
-    PRIMARY KEY (id, created_at)
+CREATE TABLE IF NOT EXISTS leaderboard.tracks(
+	track_id text,
+	title text,
+	artist text,
+	album text,
+	cover_url text,
+	duration int,
+	PRIMARY KEY (track_id)
 );
 
-CREATE TABLE streaming.watch_history (
-	user_id UUID,
-	video_id TEXT,
-	progress INT,
-	watched_at TIMESTAMP,
-	PRIMARY KEY (user_id, video_id)
+CREATE TABLE IF NOT EXISTS leaderboard.submissions (
+	submission_id timeuuid,
+	song_id text,
+	user_id text,
+	modifiers frozen<set<text>>,
+	score int,
+	difficulty text,
+	instrument text,
+	stars int,
+	accuracy_percentage float,
+	missed_count int,
+	ghost_notes_count int,
+	max_combo_count int,
+	overdrive_count int,
+	speed int,
+	played_at timestamp,
+	PRIMARY KEY (submission_id)
+);
+
+CREATE TABLE IF NOT EXISTS leaderboard.song_leaderboard (
+	submission_id uuid,
+	song_id text,
+	user_id text,
+	modifiers frozen<set<text>>,
+	score int,
+	difficulty text,
+	instrument text,
+	stars int,
+	accuracy_percentage float,
+	missed_count int,
+	ghost_notes_count int,
+	max_combo_count int,
+	overdrive_count int,
+	speed int,
+	played_at timestamp,
+	PRIMARY KEY ((song_id, modifiers, difficulty, instrument), score)
+) WITH CLUSTERING ORDER BY (score DESC);
+
+
+CREATE MATERIALIZED VIEW leaderboard.user_leaderboard AS
+    SELECT *
+    	FROM leaderboard.song_leaderboard
+    	WHERE 
+			song_id IS NOT null AND
+			modifiers IS NOT null AND
+			difficulty IS NOT null AND
+			instrument IS NOT null AND
+			score IS NOT null AND
+			user_id IS NOT null AND
+			played_at IS NOT null
+    	PRIMARY KEY ((song_id, modifiers, difficulty, instrument, user_id), score)
+    WITH CLUSTERING ORDER BY (score DESC);KEY (user_id, video_id)
 );
 ```
 

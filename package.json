@@ -1,0 +1,65 @@
+{
+  "name": "video-streaming",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "blitz dev",
+    "build": "blitz build",
+    "start": "blitz start",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "prepare": "husky install",
+    "migrate": "node migrate"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "dependencies": {
+    "@blitzjs/auth": "2.0.0-beta.33",
+    "@blitzjs/next": "2.0.0-beta.33",
+    "@blitzjs/rpc": "2.0.0-beta.33",
+    "@emotion/cache": "11.11.0",
+    "@emotion/react": "11.11.1",
+    "@emotion/server": "11.11.0",
+    "@emotion/styled": "11.11.0",
+    "@mui/icons-material": "5.14.12",
+    "@mui/material": "5.14.12",
+    "blitz": "2.0.0-beta.33",
+    "cassandra-driver": "^4.7.2",
+    "commander": "^11.0.0",
+    "dotenv": "^16.3.1",
+    "next": "13.4.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "recharts": "2.8.0",
+    "ts-node": "10.9.1",
+    "video.js": "^8.5.2",
+    "videojs-youtube": "^3.0.1"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "12.0.8",
+    "@testing-library/jest-dom": "5.16.3",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@typescript-eslint/eslint-plugin": "5.30.5",
+    "@vitejs/plugin-react": "2.2.0",
+    "eslint": "8.27.0",
+    "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "8.5.0",
+    "husky": "8.0.2",
+    "jsdom": "20.0.3",
+    "lint-staged": "13.0.3",
+    "prettier": "^2.7.1",
+    "pretty-quick": "3.1.3",
+    "typescript": "^4.8.4",
+    "vite-tsconfig-paths": "3.6.0",
+    "vitest": "0.25.3"
+  },
+  "private": true
+}

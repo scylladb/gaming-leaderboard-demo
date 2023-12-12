@@ -9,7 +9,9 @@ import Footer from "src/components/Footer";
 import SideBar from "src/components/menu/SideBar";
 import TopBar from "src/components/menu/TopBar";
 import TrackCard from 'src/components/TrackCard';
-import { Track } from 'src/types';
+import { Submission, Track } from 'src/types';
+import Leaderboard from 'src/components/leaderboard/Leaderboard';
+import LeaderboardTrackCard from 'src/components/leaderboard/LeaderboardTrackCard';
 
 const userId = "scylla-user"
 
@@ -25,7 +27,7 @@ export async function getServerSideProps(context) {
 
 const defaultTheme = createTheme();
 
-export default function TrackLeaderboard(video: Track) {
+export default function TrackLeaderboard(track: Track) {
 
     return (
     <ThemeProvider theme={defaultTheme}>
@@ -53,9 +55,15 @@ export default function TrackLeaderboard(video: Track) {
                         alignItems: 'center',
                         flexDirection: 'column'
                     }}>
-                        <Typography variant="h4" component="h1">{video.title}</Typography>
+                        <Typography variant="h4" component="h4">{track.title}</Typography>
                     
                     </Box>
+                    <LeaderboardTrackCard track={track}></LeaderboardTrackCard>
+                    <Leaderboard track={track} submissions={[{
+                        user_id: 'danielhe4rt',
+                        score: 0,
+                        stars: 0             
+                    } as Submission]}></Leaderboard>
                 </Container>
             </Box>
         </Box>

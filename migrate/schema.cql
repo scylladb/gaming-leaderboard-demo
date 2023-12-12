@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS leaderboard.tracks(
 );
 
 INSERT INTO leaderboard.tracks (track_id, title, artist, album, cover_url, duration) VALUES ('kashmir', 'Kashmir', 'Led Zeppelin', 'Mothership', 'https://i.scdn.co/image/ab67616d0000b27322f1b6c28ce5735646b2e569', 517);
-INSERT INTO leaderboard.tracks (track_id, title, artist, album, cover_url, duration) VALUES ('high-hopes', 'High Hopes', 'Pray for the Wicked', 'Panic! At the Disco', 'https://i.scdn.co/image/ab67616d0000b273c5148520a59be191eea16989', 517);
+INSERT INTO leaderboard.tracks (track_id, title, artist, album, cover_url, duration) VALUES ('high-hopes', 'High Hopes',  'Panic! At the Disco', 'Pray for the Wicked','https://i.scdn.co/image/ab67616d0000b273c5148520a59be191eea16989', 517);
 
 CREATE TABLE IF NOT EXISTS leaderboard.submissions (
 	submission_id timeuuid,

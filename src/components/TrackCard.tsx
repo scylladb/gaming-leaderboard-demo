@@ -7,8 +7,7 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { Track } from 'src/types';
 
-export default function VideoCard({ track }: { track: Track }) {
-  console.log(track);
+export default function TrackCard({ track }: { track: Track }) {
   const url = `/leaderboard/${track.track_id}`;
   return (
     <Card>

@@ -6,7 +6,7 @@ const { withBlitz } = require("@blitzjs/next")
  **/
 const config = {
     images: {
-        domains: ['img.youtube.com', 'i.scdn.co'],
+        domains: ['img.youtube.com', 'i.scdn.co', 'github.com'],
     }
 }
 

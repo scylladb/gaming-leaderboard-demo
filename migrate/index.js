@@ -1,7 +1,7 @@
 const cassandra = require('cassandra-driver');
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config({ path: '.env.local' });
+require('dotenv').config({ path: '.env' });
 
 function readCql(cql) {
     return fs.readFileSync(path.join(__dirname, `${cql}.cql`), 'utf8').split(';')
@@ -29,7 +29,7 @@ async function getClient() {
 async function main() {
     const client = await getClient();
 
-    await client.execute('DROP KEYSPACE IF EXISTS streaming');
+    await client.execute('DROP KEYSPACE IF EXISTS leaderboard');
 
     const SCHEMA = readCql('schema');
 
@@ -43,12 +43,12 @@ async function main() {
     const SAMPLE = readCSV("sample_data.csv")
     const query = `INSERT INTO streaming.video (id,created_at,content_type,thumbnail,title,url,duration)
                    VALUES (?, ?, ?, ?, ?, ?, ?)`
-    for (const row of SAMPLE) {
-        const values = row.split(",")
-        if (values.length > 1) {
-            await client.execute(query, values, { prepare: true });
-        }
-    }
+    // for (const row of SAMPLE) {
+    //     const values = row.split(",")
+    //     if (values.length > 1) {
+    //         await client.execute(query, values, { prepare: true });
+    //     }
+    // }
 
     console.log('Done.');
     client.shutdown()

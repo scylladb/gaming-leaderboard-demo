@@ -1,9 +1,9 @@
 CREATE KEYSPACE IF NOT EXISTS leaderboard WITH replication = { 'class': 'NetworkTopologyStrategy', 'replication_factor': '3' };
 
 CREATE TABLE IF NOT EXISTS leaderboard.players(
-	user_id text,
+	player_id text,
 	name text,
-	PRIMARY KEY (user_id)
+	PRIMARY KEY (player_id)
 );
 
 CREATE TABLE IF NOT EXISTS leaderboard.tracks(
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS leaderboard.tracks(
 CREATE TABLE IF NOT EXISTS leaderboard.submissions (
 	submission_id uuid,
 	track_id text,
-	user_id text,
+	player_id text,
 	modifiers frozen<set<text>>,
 	score int,
 	difficulty text,
@@ -41,16 +41,16 @@ CREATE MATERIALIZED VIEW leaderboard.user_submissions AS
     	FROM leaderboard.submissions
     	WHERE 
 			submission_id IS NOT null AND
-			user_id IS NOT null AND
+			player_id IS NOT null AND
 			played_at IS NOT null
-    	PRIMARY KEY ((user_id), played_at, submission_id)
+    	PRIMARY KEY ((player_id), played_at, submission_id)
     WITH CLUSTERING ORDER BY (played_at DESC);
 
 
 CREATE TABLE IF NOT EXISTS leaderboard.song_leaderboard (
 	submission_id uuid,
-	song_id text,
-	user_id text,
+	track_id text,
+	player_id text,
 	modifiers frozen<set<text>>,
 	score int,
 	difficulty text,
@@ -63,6 +63,6 @@ CREATE TABLE IF NOT EXISTS leaderboard.song_leaderboard (
 	overdrive_count int,
 	speed int,
 	played_at timestamp,
-	PRIMARY KEY ((song_id, modifiers, difficulty, instrument), score)
+	PRIMARY KEY ((track_id, modifiers, difficulty, instrument), score)
 ) WITH CLUSTERING ORDER BY (score DESC);
 

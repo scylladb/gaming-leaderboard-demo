@@ -84,8 +84,8 @@ Page with information regarding of that specific submissions from a played game.
 -- Data Modeling 
 CREATE TABLE IF NOT EXISTS leaderboard.submissions (
 	submission_id uuid,
-	song_id text,
-	user_id text,
+	track_id text,
+	player_id text,
 	modifiers frozen<set<text>>,
 	score int,
 	difficulty text,
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS leaderboard.submissions (
 
 -- Queries
 
-INSERT INTO leaderboard.submissions (submission_id, user_id, played_at) VALUES (ce772595-7b3b-48d8-b993-d323d1149165, 'danielhe4rt', '2019-01-01 00:00:00+0000');
+INSERT INTO leaderboard.submissions (submission_id, player_id, played_at) VALUES (ce772595-7b3b-48d8-b993-d323d1149165, 'danielhe4rt', '2019-01-01 00:00:00+0000');
 
 SELECT * FROM leaderboard.submissions WHERE submission_id = ce772595-7b3b-48d8-b993-d323d1149165;
 ```
@@ -123,17 +123,17 @@ CREATE MATERIALIZED VIEW leaderboard.user_submissions AS
     	FROM leaderboard.submissions
     	WHERE 
 			submission_id IS NOT null AND
-			user_id IS NOT null AND
+			player_id IS NOT null AND
 			played_at IS NOT null
-    	PRIMARY KEY (user_id, played_at, submission_id)
+    	PRIMARY KEY (player_id, played_at, submission_id)
     WITH CLUSTERING ORDER BY (played_at DESC);
 
 -- Queries
-INSERT INTO leaderboard.submissions (submission_id, user_id, played_at) VALUES (ce772595-7b3b-48d8-b993-d323d1149165, 'danielhe4rt', '2019-01-01 00:00:00+0000');
-INSERT INTO leaderboard.submissions (submission_id, user_id, played_at) VALUES (2ebc2ae5-742c-405f-978a-0ffc33fc9d6e, 'danielhe4rt', '2019-01-03 00:00:00+0000');
-INSERT INTO leaderboard.submissions (submission_id, user_id, played_at) VALUES (0df45aee-837a-433e-b4cc-506a1e1c367a, 'danielhe4rt', '2019-01-02 00:00:00+0000');
+INSERT INTO leaderboard.submissions (submission_id, player_id, played_at) VALUES (ce772595-7b3b-48d8-b993-d323d1149165, 'danielhe4rt', '2019-01-01 00:00:00+0000');
+INSERT INTO leaderboard.submissions (submission_id, player_id, played_at) VALUES (2ebc2ae5-742c-405f-978a-0ffc33fc9d6e, 'danielhe4rt', '2019-01-03 00:00:00+0000');
+INSERT INTO leaderboard.submissions (submission_id, player_id, played_at) VALUES (0df45aee-837a-433e-b4cc-506a1e1c367a, 'danielhe4rt', '2019-01-02 00:00:00+0000');
 
-SELECT user_id, played_at FROM leaderboard.user_submissions WHERE user_id = 'danielhe4rt' LIMIT 3;
+SELECT player_id, played_at FROM leaderboard.user_submissions WHERE player_id = 'danielhe4rt' LIMIT 3;
 
 -- submission_id                        | played_at
 ----------------------------------------+----------------------------------
@@ -149,14 +149,14 @@ SELECT user_id, played_at FROM leaderboard.user_submissions WHERE user_id = 'dan
 
 List top submissions in a specific song by **descending score**.
 
-* GET - /leaderboard/{song_id}
+* GET - /leaderboard/{track_id}
 
 ```sql
 -- Data Model
 CREATE TABLE IF NOT EXISTS leaderboard.song_leaderboard (
 	submission_id uuid,
-	song_id text,
-	user_id text,
+	track_id text,
+	player_id text,
 	modifiers frozen<set<text>>,
 	score int,
 	difficulty text,
@@ -169,28 +169,28 @@ CREATE TABLE IF NOT EXISTS leaderboard.song_leaderboard (
 	overdrive_count int,
 	speed int,
 	played_at timestamp,
-	PRIMARY KEY ((song_id, modifiers, difficulty, instrument), score)
+	PRIMARY KEY ((track_id, modifiers, difficulty, instrument), score)
 ) WITH CLUSTERING ORDER BY (score DESC);
 
 -- Queries
 
-INSERT INTO leaderboard.song_leaderboard (song_id, user_id, score, modifiers, difficulty, instrument, played_at) VALUES ('fade-to-black', 'danielhe4rt', 10000, {'none'}, 'expert', 'guitar' ,'2019-01-01 00:00:00+0000');
-INSERT INTO leaderboard.song_leaderboard (song_id, user_id, score, modifiers, difficulty, instrument, played_at) VALUES ('fade-to-black', 'tzach', 12000, {'none'}, 'expert', 'guitar' ,'2019-01-01 00:00:00+0000');
-INSERT INTO leaderboard.song_leaderboard (song_id, user_id, score, modifiers, difficulty, instrument, played_at) VALUES ('fade-to-black', 'kadoodle', 9999, {'none'}, 'expert', 'guitar' ,'2019-01-02 00:00:00+0000');
+INSERT INTO leaderboard.song_leaderboard (track_id, player_id, score, modifiers, difficulty, instrument, played_at) VALUES ('fade-to-black', 'danielhe4rt', 10000, {'none'}, 'expert', 'guitar' ,'2019-01-01 00:00:00+0000');
+INSERT INTO leaderboard.song_leaderboard (track_id, player_id, score, modifiers, difficulty, instrument, played_at) VALUES ('fade-to-black', 'tzach', 12000, {'none'}, 'expert', 'guitar' ,'2019-01-01 00:00:00+0000');
+INSERT INTO leaderboard.song_leaderboard (track_id, player_id, score, modifiers, difficulty, instrument, played_at) VALUES ('fade-to-black', 'kadoodle', 9999, {'none'}, 'expert', 'guitar' ,'2019-01-02 00:00:00+0000');
 
 SELECT 
-	user_id, score 
+	player_id, score 
 FROM 
 	leaderboard.song_leaderboard 
 WHERE 
 	instrument = 'guitar' AND
 	difficulty = 'expert' AND
 	modifiers = {'none'} AND
-	song_id = 'fade-to-black' 
+	track_id = 'fade-to-black' 
 LIMIT 
 	100;
 
---     user_id  | score
+--     player_id  | score
 ----------------+-------
 --        tzach | 12000
 --  danielhe4rt | 10000

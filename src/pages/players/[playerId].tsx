@@ -37,7 +37,7 @@ export default function PlayerProfile({ player, submissionHistory, }: PlayerProf
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <TopBar title="Watch video" />
+                <TopBar title="Player Profile" />
                 <SideBar />
             
                 <Box

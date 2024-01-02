@@ -31,7 +31,7 @@ const headCells: HeadCell[] = [
     label: 'Position',
   },
   {
-    id: 'user_id',
+    id: 'player_id',
     align: 'left',
     disablePadding: false,
     label: 'Player',
@@ -84,20 +84,20 @@ export default function Leaderboard({ track, submissions }: LeaderboardProps) {
                 {idx + 1}
               </TableCell>
               <TableCell align="left" >
-                <Link href={`/players/${submission.user_id}`} style={{
+                <Link href={`/players/${submission.player_id}`} style={{
                 display: 'flex',
                 alignItems: 'center'
               }}>
                 <Image
                   alt= {track.title}
-                  src={`https://github.com/${submission.user_id}.png`}
+                  src={`https://github.com/${submission.player_id}.png`}
                   width={40}
                   height={40}
                   style={{
                     borderRadius: '50%',
                   }}
                 />
-                {submission.user_id}
+                {submission.player_id}
                 </Link>
               </TableCell>
               <TableCell align="right">{submission.score}</TableCell>

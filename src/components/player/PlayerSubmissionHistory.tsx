@@ -86,7 +86,7 @@ export default function PlayerSubmissionHistory({ submissions }: PlayerSubmissio
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
-                                    {submission.song_id}
+                                    {submission.track_id}
                                 </TableCell>
                                 <TableCell>{submission.score}</TableCell>
                                 <TableCell>{submission.accuracy_percentage ?? 100}%</TableCell>

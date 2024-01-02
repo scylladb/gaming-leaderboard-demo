@@ -31,8 +31,8 @@ export function parseTrack(track: types.Row): Track {
 export function parseSubmission(track: types.Row): Submission {
   return {
     submission_id: track.submission_id,
-    song_id: track.song_id,
-    user_id: track.user_id,
+    track_id: track.track_id,
+    player_id: track.player_id,
     modifiers: track.modifiers,
     score: track.score,
     difficulty: track.difficulty,
@@ -51,7 +51,7 @@ export function parseSubmission(track: types.Row): Submission {
 
 export function parsePlayer(player: types.Row): Player {
   return {
-    player_id: player.user_id,
+    player_id: player.player_id,
     name: player.name
   } as Player;
 }

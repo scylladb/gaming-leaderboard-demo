@@ -1,0 +1,84 @@
+{
+    "players": [
+        {
+            "player_id": "danielreis",
+            "name": "Daniel Reis"
+        },
+        {
+            "player_id": "kaduwaengertner",
+            "name": "Kadu Waengertner"
+        },
+        {
+            "player_id": "scylladb",
+            "name": "Sea Monster"
+        },
+        {
+            "player_id": "danielhe4rt",
+            "name": "Daniel Reis"
+        },
+        {
+            "player_id": "cherryramatisdev",
+            "name": "Cherry Ramatis"
+        },
+        {
+            "player_id": "luisnadachi",
+            "name": "Luis Nadachi"
+        },
+        {
+            "player_id": "tzachl",
+            "name": "Tzach Livyatan"
+        }
+    
+    ],
+    "tracks": [
+        {
+            "track_id": "kashmir",
+            "title": "Kashmir",
+            "artist": "Led Zeppelin",
+            "album": "Mothership",
+            "cover_url": "https://i.scdn.co/image/ab67616d0000b27322f1b6c28ce5735646b2e569",
+            "duration": 517
+        },
+        {
+            "track_id": "high-hopes",
+            "title": "High Hopes",
+            "artist": "Panic! At The Disco",
+            "album": "Pray For The Wicked",
+            "cover_url": "https://i.scdn.co/image/ab67616d0000b273c5148520a59be191eea16989",
+            "duration": 517
+        },
+        {
+            "track_id": "instant-crush",
+            "title": "Instant Crush",
+            "artist": "Daft Punk",
+            "album": "Random Access Memories",
+            "cover_url": "https://i.scdn.co/image/ab67616d0000b2733c196ec7c5344d654ff552e9",
+            "duration": 517
+        },
+        {
+            "track_id": "cant-help-falling-in-love",
+            "title": "Can't Help Falling in Love",
+            "artist": "Elvis Presley",
+            "album": "Blue Hawaii",
+            "cover_url": "https://i.scdn.co/image/ab67616d0000b273f96cefb0197694ad440c3314",
+            "duration": 517
+        },
+        {
+            "track_id": "faint",
+            "title": "Faint",
+            "artist": "Linkin Park",
+            "album": "Meteora",
+            "cover_url": "https://i.scdn.co/image/ab67616d0000b273b4ad7ebaf4575f120eb3f193",
+            "duration": 517
+        },
+        {
+            "track_id": "smooth-criminal",
+            "title": "Smooth Criminal",
+            "artist": "Michael Jackson",
+            "album": "Bad",
+            "cover_url": "https://i.scdn.co/image/ab67616d0000b2731bb21d27effb96a1d0fe8d6d",
+            "duration": 517
+        }
+
+    ]
+}

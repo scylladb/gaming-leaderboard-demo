@@ -10,8 +10,8 @@ export type Track = {
 
 export type Submission = {
     submission_id: string,
-	song_id: string,
-	user_id: string,
+	track_id: string,
+	player_id: string,
 	modifiers: string[],
 	score: number,
 	difficulty: string,

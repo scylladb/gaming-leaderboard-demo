@@ -15,9 +15,9 @@ export default async function playerHistory(
     const playerId = req.query.playerId;
     const cluster = await getScyllaDBCluster();
     
-    const rawPlayer = await cluster.execute("SELECT * FROM leaderboard.players WHERE user_id = ?", [playerId]);
+    const rawPlayer = await cluster.execute("SELECT * FROM leaderboard.players WHERE player_id = ?", [playerId]);
 
-    const rawSubmissions = await cluster.execute("SELECT * FROM leaderboard.user_submissions WHERE user_id = ?", [playerId]);
+    const rawSubmissions = await cluster.execute("SELECT * FROM leaderboard.user_submissions WHERE player_id = ?", [playerId]);
 
     const response = {
         player: parsePlayer(rawPlayer.first()),

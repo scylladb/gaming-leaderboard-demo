@@ -10,10 +10,6 @@ export type SubmissionResponse = {
     submissions: Submission[]
 };
 
-type SubmissionQueryDTO = {
-
-}
-
 export default async function getTrackLeaderboard(
     req: NextApiRequest,
     res: NextApiResponse<SubmissionResponse>
@@ -35,7 +31,7 @@ export default async function getTrackLeaderboard(
 async function getSubmissions(cluster, trackId, instrument, difficulty, modifiers) {
 
 
-    const result = await cluster.execute(`SELECT * FROM leaderboard.song_leaderboard WHERE song_id = ? AND modifiers = ? AND difficulty = ? AND instrument = ?`, [
+    const result = await cluster.execute(`SELECT * FROM leaderboard.song_leaderboard WHERE track_id = ? AND modifiers = ? AND difficulty = ? AND instrument = ?`, [
         trackId,
         modifiers.split(',') as Set<string>,
         difficulty,

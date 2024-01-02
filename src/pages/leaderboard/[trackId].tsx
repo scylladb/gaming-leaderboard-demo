@@ -69,7 +69,7 @@ export default function TrackLeaderboard({ track, submissions }: SubmissionRespo
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <TopBar title="Watch video" />
+                <TopBar title="Track Leaderboard" />
                 <SideBar />
                 {/* Page content */}
                 <Box

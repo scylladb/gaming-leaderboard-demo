@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
-import { Card, TableBody, TableCell } from '@mui/material';
+import { Card, TableBody, TableCell, Typography } from '@mui/material';
 import Image from 'next/image';
 
 
@@ -56,6 +56,9 @@ type PlayerSubmissionHistoryProps = {
 export default function PlayerSubmissionHistory({ submissions }: PlayerSubmissionHistoryProps) {
     return (
         <Card sx={{ p: 2 }}>
+            <Typography gutterBottom variant="h5" component="h5">
+                Submission History
+            </Typography>
             <TableContainer>
                 <Table
                     sx={{ minWidth: 750 }}
@@ -86,7 +89,7 @@ export default function PlayerSubmissionHistory({ submissions }: PlayerSubmissio
                                     {submission.song_id}
                                 </TableCell>
                                 <TableCell>{submission.score}</TableCell>
-                                <TableCell>{submission.accuracy_percentage ?? 0}</TableCell>
+                                <TableCell>{submission.accuracy_percentage ?? 100}%</TableCell>
                                 <TableCell>{submission.stars ?? 5}</TableCell>
                                 <TableCell>{submission.played_at}</TableCell>
                             </TableRow>

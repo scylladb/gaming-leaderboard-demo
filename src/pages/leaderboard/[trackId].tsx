@@ -86,15 +86,7 @@ export default function TrackLeaderboard({ track, submissions }: SubmissionRespo
                 >
                     <Toolbar />
                     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                        <Box sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                            key: '123'
-                        }}>
-                            <Typography variant="h4" component="h4">{track.title}</Typography>
-
-                        </Box>
+                        
 
                         <LeaderboardTrackCard track={track}></LeaderboardTrackCard>
 

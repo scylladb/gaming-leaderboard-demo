@@ -5,8 +5,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
-import { TableBody, TableCell } from '@mui/material';
+import { Card, TableBody, TableCell } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type LeaderboardProps = {
   track: Track;
@@ -52,7 +53,8 @@ const headCells: HeadCell[] = [
 
 export default function Leaderboard({ track, submissions }: LeaderboardProps) {
   return (
-    <TableContainer>
+    <Card sx={{p:2, mt:2}}>
+      <TableContainer>
       <Table
         sx={{ minWidth: 750 }}
         aria-labelledby="tableTitle"
@@ -81,7 +83,8 @@ export default function Leaderboard({ track, submissions }: LeaderboardProps) {
               <TableCell component="th" scope="row">
                 {idx + 1}
               </TableCell>
-              <TableCell align="left" style={{
+              <TableCell align="left" >
+                <Link href={`/players/${submission.user_id}`} style={{
                 display: 'flex',
                 alignItems: 'center'
               }}>
@@ -95,6 +98,7 @@ export default function Leaderboard({ track, submissions }: LeaderboardProps) {
                   }}
                 />
                 {submission.user_id}
+                </Link>
               </TableCell>
               <TableCell align="right">{submission.score}</TableCell>
               <TableCell align="right">{submission.stars}</TableCell>
@@ -103,5 +107,6 @@ export default function Leaderboard({ track, submissions }: LeaderboardProps) {
         </TableBody>
       </Table>
     </TableContainer>
+    </Card>
   );
 };

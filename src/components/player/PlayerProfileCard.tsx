@@ -26,6 +26,10 @@ export default function PlayerProfileCard({ player }: PlayerProfileCardProps) {
                         {player.name}
                     </Typography>
 
+                    <Typography variant="subtitle1" color="text.secondary" component="div">
+                        @{player.player_id}
+                    </Typography>
+
                 </CardContent>
             </Box>
         </Card>

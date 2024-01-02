@@ -14,14 +14,14 @@ git clone https://github.com/danielhe4rt/leaderboard-demo
 
 ### Configuration file
 
-Create a new configuration file named `.env.local` in the project's root folder. This file contains your ScyllaDB cluster credentials:
+Create a new configuration file named `.env` in the project's root folder. This file contains your ScyllaDB cluster credentials:
 ```
-# .env.local
-APP_BASE_URL="http://localhost:8000"
+# .env
+APP_BASE_URL="http://localhost:3000"
 SCYLLA_HOSTS="node-0.aws_eu_central_1.xxxxx.clusters.scylla.cloud"
 SCYLLA_USER="scylla"
 SCYLLA_PASSWD="xxxxx"
-SCYLLA_KEYSPACE="streaming"
+SCYLLA_KEYSPACE="leaderboard"
 SCYLLA_DATACENTER="AWS_EU_CENTRAL_1"
 ```
 

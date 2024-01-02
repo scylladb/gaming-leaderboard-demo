@@ -32,7 +32,7 @@ export default function viewPlayers({ players }: PlayerListProps) {
         <ThemeProvider theme={defaultTheme}>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <TopBar title="Scored song list" />
+                <TopBar title="Players List" />
                 <SideBar />
                 {/* Page content */}
                 <Box

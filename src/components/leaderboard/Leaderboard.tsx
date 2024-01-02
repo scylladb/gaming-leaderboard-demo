@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import { Card, TableBody, TableCell } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
+import moment from 'moment';
 
 type LeaderboardProps = {
   track: Track;
@@ -48,6 +49,12 @@ const headCells: HeadCell[] = [
     disablePadding: false,
     label: 'Stars',
   },
+  {
+    id: 'played_at',
+    align: 'right',
+    disablePadding: false,
+    label: 'Played At',
+  },
 ];
 
 
@@ -81,7 +88,7 @@ export default function Leaderboard({ track, submissions }: LeaderboardProps) {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {idx + 1}
+                #{idx + 1}
               </TableCell>
               <TableCell align="left" >
                 <Link href={`/players/${submission.player_id}`} style={{
@@ -95,6 +102,7 @@ export default function Leaderboard({ track, submissions }: LeaderboardProps) {
                   height={40}
                   style={{
                     borderRadius: '50%',
+                    marginRight: '10px',
                   }}
                 />
                 {submission.player_id}
@@ -102,6 +110,7 @@ export default function Leaderboard({ track, submissions }: LeaderboardProps) {
               </TableCell>
               <TableCell align="right">{submission.score}</TableCell>
               <TableCell align="right">{submission.stars}</TableCell>
+              <TableCell align="right">{moment(submission.played_at).fromNow()}</TableCell>
             </TableRow>
           ))}
         </TableBody>

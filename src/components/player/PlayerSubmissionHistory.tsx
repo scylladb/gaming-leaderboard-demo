@@ -7,6 +7,7 @@ import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
 import { Card, TableBody, TableCell, Typography } from '@mui/material';
 import Image from 'next/image';
+import moment from 'moment';
 
 
 interface HeadCell {
@@ -55,7 +56,7 @@ type PlayerSubmissionHistoryProps = {
 
 export default function PlayerSubmissionHistory({ submissions }: PlayerSubmissionHistoryProps) {
     return (
-        <Card sx={{ p: 2 }}>
+        <Card sx={{ p: 2, marginTop: 2 }}>
             <Typography gutterBottom variant="h5" component="h5">
                 Submission History
             </Typography>
@@ -91,7 +92,7 @@ export default function PlayerSubmissionHistory({ submissions }: PlayerSubmissio
                                 <TableCell>{submission.score}</TableCell>
                                 <TableCell>{submission.accuracy_percentage ?? 100}%</TableCell>
                                 <TableCell>{submission.stars ?? 5}</TableCell>
-                                <TableCell>{submission.played_at}</TableCell>
+                                <TableCell>{moment(submission.played_at).fromNow()}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

@@ -39,7 +39,7 @@ npm install
 CREATE KEYSPACE IF NOT EXISTS leaderboard WITH replication = { 'class': 'NetworkTopologyStrategy', 'replication_factor': '3' };
 ```
 
-### Features
+## Features
 
 Here's a detailed list of feature from the game leaderboard example. 
 
@@ -70,7 +70,7 @@ SELECT * FROM tracks LIMIT 9;
 SELECT * FROM tracks WHERE track_id = 'kashmir';
 ```
 
-#### Game Submission
+<!-- #### Game Submission
 ![Submission Preview Screenshot from YARG Game](.github/images/preview-submission.png)
 
 Page with information regarding of that specific submissions from a played game. 
@@ -106,15 +106,15 @@ CREATE TABLE IF NOT EXISTS leaderboard.submissions (
 INSERT INTO leaderboard.submissions (submission_id, player_id, played_at) VALUES (ce772595-7b3b-48d8-b993-d323d1149165, 'danielhe4rt', '2019-01-01 00:00:00+0000');
 
 SELECT * FROM leaderboard.submissions WHERE submission_id = ce772595-7b3b-48d8-b993-d323d1149165;
-```
+``` -->
 
-#### User Games History
+### Player Games History
 
 ![Player Submission History Preview Screenshot from ScoreSpy Game](.github/images/preview-submission-history.png)
 
 Materialized view from *submissions* to fetch the games history ordered latest submissions.
 
-* GET - /user/{userId}/last-submissions
+* GET - /players/{playerId}
 
 ```sql
 -- Data Modeling
@@ -149,7 +149,7 @@ SELECT player_id, played_at FROM leaderboard.user_submissions WHERE player_id = 
 
 List top submissions in a specific song by **descending score**.
 
-* GET - /leaderboard/{track_id}
+* GET - /leaderboard/{trackId}
 
 ```sql
 -- Data Model

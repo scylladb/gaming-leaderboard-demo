@@ -203,7 +203,7 @@ LIMIT
 
 ```
 npm run dev
-> video-streaming@1.0.0 dev
+> leaderboard@1.0.0 dev
 > blitz dev
 
 ✔ Next.js was successfully patched with a React Suspense fix

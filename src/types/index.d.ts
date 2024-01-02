@@ -25,3 +25,8 @@ export type Submission = {
 	speed: number,
 	played_at: Date,
 };
+
+export type Player = {
+	player_id: string,
+	name: string
+}

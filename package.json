@@ -1,5 +1,5 @@
 {
-  "name": "video-streaming",
+  "name": "game-leaderboard-demo",
   "version": "1.0.0",
   "scripts": {
     "dev": "blitz dev",

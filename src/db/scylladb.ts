@@ -1,7 +1,7 @@
 
 import cassandra from 'cassandra-driver'
 import type { types } from 'cassandra-driver'
-import { Submission, Track } from 'src/types';
+import { Player, Submission, Track } from 'src/types';
 
 export async function getScyllaDBCluster() {
 
@@ -47,4 +47,11 @@ export function parseSubmission(track: types.Row): Submission {
     played_at: track.played_at
   } as Submission;
   
+}
+
+export function parsePlayer(player: types.Row): Player {
+  return {
+    player_id: player.user_id,
+    name: player.name
+  } as Player;
 }

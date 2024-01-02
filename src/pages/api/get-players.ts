@@ -1,22 +1,21 @@
 import { types } from "cassandra-driver";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getScyllaDBCluster, parseTrack } from "src/db/scylladb";
-import { Track } from "src/types";
+import { getScyllaDBCluster, parsePlayer } from "src/db/scylladb";
+import { Player } from "src/types";
 
 const userId = 'scylla-user';
 
 export default async function listVideos(
     req: NextApiRequest,
-    res: NextApiResponse<Track[]>
+    res: NextApiResponse<Player[]>
 ) {
     const cluster = await getScyllaDBCluster();
     
-    const rawTracks = await cluster.execute("SELECT * FROM leaderboard.tracks LIMIT 9");
+    const rawPlayers = await cluster.execute("SELECT * FROM leaderboard.players LIMIT 9");
 
+    const trackCollection = rawPlayers.rows.map(parsePlayer);
 
-    const trackCollection = rawTracks.rows.map(parseTrack);
-
-    return res.status(200).json(await Promise.all(trackCollection));
+    return res.status(200).json(trackCollection);
 }
 
 function getProgress(progress: types.ResultSet): number {

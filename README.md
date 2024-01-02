@@ -212,5 +212,3 @@ npm run dev
 ```
 
 Go to http://localhost:3000 to open the app.
-
-![app screenshot](/public/app_screen.png)

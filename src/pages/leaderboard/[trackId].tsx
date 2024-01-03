@@ -40,8 +40,6 @@ const defaultTheme = createTheme();
 
 export default function TrackLeaderboard({ track, submissions }: SubmissionResponse) {
 
-    // HERE WE KNOW STUFF
-
     const [submissionsList, setSubmissionsState] = useState<Submission[]>(submissions);
 
     const [modifiers, setModifiers] = useState<string[]>(['no-modifiers']);

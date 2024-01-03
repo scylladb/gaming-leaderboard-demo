@@ -1,21 +1,49 @@
 # Gaming Leaderboard Demo  - Next.js + ScyllaDB application
 This repository contains a sample gaming leaderboard application built with [Blitz.js](https://blitzjs.com/), [Material-UI](https://mui.com/material-ui/) and [ScyllaDB](https://www.scylladb.com/).
 
-## Prerequisites
+## 1. Prerequisites
 * [NodeJS](https://nodejs.org/en)
 * [ScyllaDB Cloud account](https://cloud.scylladb.com/account/sign-up)
 
-## Get started
+## 2. Getting Started
 
-**Clone the repository**
+### 2.1 Setup a Scylla Cloud
+
+
+Before start, go into Scylla Cloud and create a `New Cluster` in `Sandbox Mode` under the `Free Trial` tab. 
+
+Be sure to check the Scylla version under `CQL Compatible API` and select the region closest to you.
+
+![Scylla Cloud panel with options related to Cluster Creation](.github/images/preview-scylla-cloud-cluster-creation.png) 
+
+
+> [!TIP]
+> You can also run ScyllaDB inside a Docker container. Learn more about that at [Scylla University](https://university.scylladb.com).
+
+### 2.2 Setup the Project
+
+After have your Scylla Cluster done, let's clone our project. 
+
 ```
 git clone https://github.com/danielhe4rt/leaderboard-demo
+cd leaderboard-demo
 ```
 
-### Configuration file
+To install the project, you have to run:
+
+```bash
+npm install
+```
+
+
+## 3. Configuring the Environment
+
+> [!TIP]
+> You can copy/duplicate the base file `.env.example` into `.env` as well.
 
 Create a new configuration file named `.env` in the project's root folder. This file contains your ScyllaDB cluster credentials:
-```
+
+```do
 # .env
 APP_BASE_URL="http://localhost:3000"
 SCYLLA_HOSTS="node-0.aws_eu_central_1.xxxxx.clusters.scylla.cloud"
@@ -25,25 +53,64 @@ SCYLLA_KEYSPACE="leaderboard"
 SCYLLA_DATACENTER="AWS_EU_CENTRAL_1"
 ```
 
-You can copy the `SCYLLA_HOSTS`, `SCYLLA_USER`, `SCYLLA_PASSWD` and `SCYLLA_DATACENTER` values from your ScyllaDB Cloud dashboard. Keyspace should be `streaming`.
+> [!NOTE]
+> You can copy the `SCYLLA_HOSTS`, `SCYLLA_USER`, `SCYLLA_PASSWD` and `SCYLLA_DATACENTER` values from your ScyllaDB Cloud dashboard. Keyspace should be `leaderboard`.
 
-### Install project requirements
+![Scylla Cloud Credentials Page under Connect Tab](.github/images/preview-scylla-cluster-credentials.png)
+
+
+## 4. Running the Migrations
+
+After have all your environment variables set, you'll be able to execute the migrations for this project:
+
+```bash
+npm run migrate
+# Creating keyspace and tables...
+# Inserting Players...
+# New Player: Daniel Reis
+# New Player: Kadu Waengertner
+# ...
+# Inserting Tracks...
+# Inserted Track: Instant Crush
+# Inserted Track: Faint
+# ...
+# Populating Submissions...
+# Done.
 ```
-npm install
+
+
+## 5. Running the App
+
+After all this steps you now is able to run and test the project! You can start the application running:
+
+```
+npm run dev
+> leaderboard@1.0.0 dev
+> blitz dev
+
+✔ Next.js was successfully patched with a React Suspense fix
+✔ Routes manifest was successfully generated
+- ready started server on 0.0.0.0:3000, url: http://localhost:3000
 ```
 
-### Default Keyspace config.
+Go to http://localhost:3000 to open the app.
 
-```sql
--- Keyspace Config
-CREATE KEYSPACE IF NOT EXISTS leaderboard WITH replication = { 'class': 'NetworkTopologyStrategy', 'replication_factor': '3' };
-```
 
-## Features
+## 6. Features
 
 Here's a detailed list of feature from the game leaderboard example. 
 
-### Game Tracks 
+### 6.1 Default Keyspace config.
+
+```sql
+-- Keyspace Config
+CREATE KEYSPACE IF NOT EXISTS leaderboard WITH replication = { 
+	'class': 'NetworkTopologyStrategy', 
+	'replication_factor': '3'
+};
+```
+
+### 6.2 Game Tracks 
 
 ![List of all tracks played so far with scoreboard](.github/images/preview-list-played-tracks.png)
 
@@ -108,7 +175,7 @@ INSERT INTO leaderboard.submissions (submission_id, player_id, played_at) VALUES
 SELECT * FROM leaderboard.submissions WHERE submission_id = ce772595-7b3b-48d8-b993-d323d1149165;
 ``` -->
 
-### Player Games History
+### 6.3 Player Games History
 
 ![Player Submission History Preview Screenshot from ScoreSpy Game](.github/images/preview-submission-history.png)
 
@@ -143,7 +210,7 @@ SELECT player_id, played_at FROM leaderboard.user_submissions WHERE player_id = 
 ----------------------------------------+----------------------------------
 ```
 
-#### Song Leaderboard
+### 6.4 Song Leaderboard
 
 ![Song Leaderboard Preview by YARG](.github/images/preview-song-leaderboard.png)
 
@@ -197,18 +264,3 @@ LIMIT
 --     kadoodle |  9999
 ----------------+-------
 ```
-
-
-## Running the App
-
-```
-npm run dev
-> leaderboard@1.0.0 dev
-> blitz dev
-
-✔ Next.js was successfully patched with a React Suspense fix
-✔ Routes manifest was successfully generated
-- ready started server on 0.0.0.0:3000, url: http://localhost:3000
-```
-
-Go to http://localhost:3000 to open the app.

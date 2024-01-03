@@ -39,9 +39,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "recharts": "2.8.0",
-    "ts-node": "10.9.1",
-    "video.js": "^8.5.2",
-    "videojs-youtube": "^3.0.1"
+    "ts-node": "10.9.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "12.0.8",

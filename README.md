@@ -7,12 +7,11 @@ This repository contains a sample gaming leaderboard application built with [Bli
 
 ## 2. Getting Started
 
-### 2.1 Setup a Scylla Cloud
+### 2.1 Setup a ScyllaDB Cloud cluster
 
+Before you start, go into ScyllaDB Cloud and create a `New Cluster` in `Sandbox Mode` under the `Free Trial` tab. 
 
-Before start, go into Scylla Cloud and create a `New Cluster` in `Sandbox Mode` under the `Free Trial` tab. 
-
-Be sure to check the Scylla version under `CQL Compatible API` and select the region closest to you.
+Be sure to check the ScyllaDB version under `CQL Compatible API` and select the region closest to you.
 
 ![Scylla Cloud panel with options related to Cluster Creation](.github/images/preview-scylla-cloud-cluster-creation.png) 
 
@@ -22,14 +21,14 @@ Be sure to check the Scylla version under `CQL Compatible API` and select the re
 
 ### 2.2 Setup the Project
 
-After have your Scylla Cluster done, let's clone our project. 
+After your ScyllaDB cluster has been created, clone the project. 
 
 ```
 git clone https://github.com/danielhe4rt/leaderboard-demo
 cd leaderboard-demo
 ```
 
-To install the project, you have to run:
+To install the project, run:
 
 ```bash
 npm install
@@ -61,7 +60,7 @@ SCYLLA_DATACENTER="AWS_EU_CENTRAL_1"
 
 ## 4. Running the Migrations
 
-After have all your environment variables set, you'll be able to execute the migrations for this project:
+After setting your environment variables, you'll be able to execute the migrations for this project:
 
 ```bash
 npm run migrate
@@ -81,7 +80,7 @@ npm run migrate
 
 ## 5. Running the App
 
-After all this steps you now is able to run and test the project! You can start the application running:
+You can now run and test the project! Launch the application:
 
 ```
 npm run dev
@@ -98,7 +97,7 @@ Go to http://localhost:3000 to open the app.
 
 ## 6. Features
 
-Here's a detailed list of feature from the game leaderboard example. 
+Here's a detailed list of features from the game leaderboard example. 
 
 ### 6.1 Default Keyspace config.
 
